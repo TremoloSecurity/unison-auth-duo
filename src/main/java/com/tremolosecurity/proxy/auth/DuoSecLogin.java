@@ -58,8 +58,8 @@ public class DuoSecLogin implements AuthMechanism {
         String secretKey = authParams.get("duoSecretKey").getValues().get(0);
         String apiHostName = authParams.get("duoApiHostName").getValues().get(0);
         String userNameAttribute = authParams.get("userNameAttribute").getValues().get(0);
-        String akey = authParams.get("duoAKey").getValues().get(0);
-
+        String akey = authParams.get("duoAKey").getValues().get(0).trim();
+        
         AuthInfo authInfo = ((AuthController) session.getAttribute(ProxyConstants.AUTH_CTL)).getAuthInfo();
         logger.info("authInfo " + authInfo.getAuthChain());
         String userName = authInfo.getAttribs().get(userNameAttribute).getValues().get(0);
@@ -109,7 +109,7 @@ public class DuoSecLogin implements AuthMechanism {
             String secretKey = authParams.get("duoSecretKey").getValues().get(0);
             String apiHostName = authParams.get("duoApiHostName").getValues().get(0);
             String userNameAttribute = authParams.get("userNameAttribute").getValues().get(0);
-            String akey = authParams.get("duoAKey").getValues().get(0);
+            String akey = authParams.get("duoAKey").getValues().get(0).trim();
             RequestHolder reqHolder = ((AuthController) session.getAttribute(ProxyConstants.AUTH_CTL)).getHolder();
 
             AuthInfo authInfo = ((AuthController) session.getAttribute(ProxyConstants.AUTH_CTL)).getAuthInfo();

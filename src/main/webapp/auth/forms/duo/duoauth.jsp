@@ -35,6 +35,8 @@ limitations under the License.
 	authURL = cfg.getAuthFormsPath();
 		}
 	}
+
+	String signedReq = (String) request.getAttribute("duo.sigreq");
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -75,25 +77,19 @@ limitations under the License.
 			<div class="alert alert-danger" role="alert">
 			<h2>Logging in with DUO Security</h2>
 
-			<script src="<%= authURL %>/duo/js/Duo-Web-v2.js"></script>
-			
-			<iframe id="duo_iframe"
-            title="Two-Factor Authentication"
-            frameborder="0"
-            data-host="<%= request.getAttribute("duo.apihost") %>"
-			data-sig-request="<%= request.getAttribute("duo.sigreq"	) %>"
-			data-post-action="<%= session.getAttribute("TREMOLO_AUTH_URI") %>"></iframe>
+			<script src="<%= authURL %>/duo/js/Duo-Web-v2.min.js"></script>
     
 			
-			<!--
+			
 			<iframe id="duo_iframe"></iframe>
 			<script>
+				
 				Duo.init({
 				  'host': '<%= request.getAttribute("duo.apihost") %>',
-				  'sig_request': '<%= request.getAttribute("duo.sigreq"	) %>>',
+				  'sig_request': '<%= signedReq %>',
 				  'post_action': '<%= session.getAttribute("TREMOLO_AUTH_URI") %>'
 				});
-			  </script>-->
+			  </script>
 </div>
 			
 		</div>
